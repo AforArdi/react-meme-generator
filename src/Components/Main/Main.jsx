@@ -2,11 +2,11 @@ const Main = () => {
     return ( 
         <main>
             <div>
-                <label htmlFor="">
-                    <input type="text" name="topText" id="" />
+                <label htmlFor="">Top Text
+                    <input type="text" name="topText" id="" placeholder="Top Text" />
                 </label>
-                <label htmlFor="">
-                    <input type="text" name="bottomText" id="" />
+                <label htmlFor="">Bottom Text
+                    <input type="text" name="bottomText" id="" placeholder="Bottom Text" />
                 </label>
             </div>
         </main>
