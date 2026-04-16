@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdImageSearch } from "react-icons/md";
 import '../../App.css'
 
@@ -8,6 +8,23 @@ const Main = () => {
         bottomText: "Walk into Mordor",
         imageUrl: "http://i.imgflip.com/1bij.jpg"
     })
+
+    const [allMemes, setAllMemes] = useState([]);
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(data => setAllMemes(data.data.memes))
+    }, [])
+
+    const getMemeImg=()=>{
+        const randomNumber = Math.floor(Math.random() * allMemes.length);
+        const newMemeUrl = allMemes[randomNumber].url;
+        // console.log(newMemeUrl)
+        setMeme(prev=> ({
+            ...prev,
+            imageUrl: newMemeUrl
+        }))
+    }
 
     const handleChange=(e)=>{
         const {value, name} = e.currentTarget;
@@ -39,7 +56,7 @@ const Main = () => {
             </div>
 
             <div className="container mx-auto flex justify-center mt-6">
-                <button className="btn btn-soft w-full">
+                <button onClick={getMemeImg} className="btn btn-soft w-full">
                     Get A Meme <MdImageSearch></MdImageSearch>
                 </button>
             </div>
